@@ -45,10 +45,10 @@ public class UserProfile {
     public static class OnboardingCompletion {
 
         @Column(name = "respondant_onboarding_completion")
-        private Date respondentOnboardingCompletion;
+        private Date respondent;
 
         @Column(name = "creator_onboarding_completion")
-        private Date creatorOnboardingCompletion;
+        private Date creator;
 
         public OnboardingCompletion() {
 
