@@ -13,12 +13,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserProfile> GetUserProfile(@PathVariable String userId) {
-            UserProfile userProfile = userService.GetUserProfile(userId);
-            return ResponseEntity.ok(userProfile);
-
+    @PutMapping("/")
+    public ResponseEntity<UserProfile> UpdateUserProfile(@RequestBody UserProfile userProfile) {
+        UserProfile updatedUserProfile = userService.UpdateUserProfile(userProfile);
+        return ResponseEntity.ok(updatedUserProfile);
     }
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserProfile> GetUserProfile(@PathVariable String userId) {
+        UserProfile userProfile = userService.GetUserProfile(userId);
+        return ResponseEntity.ok(userProfile);
+    }
 
 }

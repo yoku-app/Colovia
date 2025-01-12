@@ -18,6 +18,13 @@ public class UserProfile {
     @Column(name = "user_id", nullable = false)
     private UUID userId;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "main_focus")
+    private Focus focus;
+
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -44,15 +51,24 @@ public class UserProfile {
     @Setter
     public static class OnboardingCompletion {
 
-        @Column(name = "respondant_onboarding_completion")
-        private Date respondentOnboardingCompletion;
+        @Column(name = "respondent_onboarding_completion")
+        private Date respondent;
 
         @Column(name = "creator_onboarding_completion")
-        private Date creatorOnboardingCompletion;
+        private Date creator;
+
+        @Column(name = "core_onboarding_completion")
+        private Date core;
 
         public OnboardingCompletion() {
 
         }
+    }
+
+    public enum Focus {
+        RESPONDENT,
+        CREATOR,
+        HYBRID
     }
 
     public UserProfile() {
