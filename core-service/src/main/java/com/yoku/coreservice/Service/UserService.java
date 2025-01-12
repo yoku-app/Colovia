@@ -18,7 +18,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    private UserProfile FindUserProfileOrThrow(String userId) throws UserNotFoundException {
+    private UserProfile FindUserProfileOrThrow(String userId) throws UserNotFoundException, InvalidArgumentException {
+        utilService.ValidateUUIDFromString(userId);
+        // Find User Profile from Database else throw if null
         return userRepository.findByUserId(UUID.fromString(userId))
                 .orElseThrow(() -> new UserNotFoundException("User Profile not found with User Id:" + userId));
     }
@@ -34,13 +36,10 @@ public class UserService {
 
         // Find User Profile from Database else throw if null
         return FindUserProfileOrThrow(userId);
-
     }
 
     public UserProfile UpdateUserProfile(UserProfile user) throws InvalidArgumentException, UserNotFoundException{
         return userRepository.save(user);
     }
-
-
 
 }

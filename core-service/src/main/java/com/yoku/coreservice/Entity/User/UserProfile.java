@@ -51,6 +51,7 @@ public class UserProfile {
     @Setter
     public static class OnboardingCompletion {
 
+
         @Column(name = "respondent_onboarding_completion")
         private Date respondent;
 
