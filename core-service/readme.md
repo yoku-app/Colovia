@@ -1,0 +1,2 @@
+-   When Connecting from a Mobile Hotspot (fuck you australia) connect to SupabaseDB through the IPv4 Connection Pool
+-   When connecting through actual internet, use the regular JDBC URL
