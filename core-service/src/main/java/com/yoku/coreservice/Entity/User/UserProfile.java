@@ -1,10 +1,20 @@
 package com.yoku.coreservice.Entity.User;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import java.util.Date;
 import java.util.UUID;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -20,6 +30,9 @@ public class UserProfile {
 
     @Column(name = "phone")
     private String phone;
+
+    @Column(name = "dob")
+    private Date dob;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "main_focus")
@@ -50,7 +63,6 @@ public class UserProfile {
     @Getter
     @Setter
     public static class OnboardingCompletion {
-
 
         @Column(name = "respondent_onboarding_completion")
         private Date respondent;
