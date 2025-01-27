@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: colovia
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${POSTGRES_DB_JDBC}
+    #    url: ${POSTGRES_DB_JDBC_IPV4}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  data:
+    mongodb:
+      uri: ${MONGO_DB_URI}
+      database: ${MONGO_DB_NAME}
+    redis:
+      host: ${REDIS_DB_HOST}
+      port: ${REDIS_DB_PORT}
+
+server:
+  port: 8082
+  origins:
+    - ${ORIGIN_CLIENT_WEB_URL}
+logging:
+  level:
+    root: INFO
+    com.yoku.colovia: DEBUG  # Adjust the logging level for your application packages
+
+  file:
+    name: ./logs/application.log  # This will store logs in the root folder under 'logs/application.log'
+    # Or use an absolute path, e.g., '/path/to/logs/application.log' if needed
+
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"  # Custom console log pattern
+    file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"    # Custom file log pattern
+
+  # Optional: Max file size and number of files to keep for rotation
+  logback:
+    rolling-policy:
+      file-name-pattern: ./logs/application-%d{yyyy-MM-dd}.%i.log  # Rolling logs per day
+      max-history: 30  # Keep logs for the last 30 days
