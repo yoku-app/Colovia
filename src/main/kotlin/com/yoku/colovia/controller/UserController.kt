@@ -16,9 +16,15 @@ class UserController(private val userService: UserService) {
         return ResponseEntity.ok(updatedUserProfile)
     }
 
-    @GetMapping("/{userId}")
-    fun getUserProfile(@PathVariable userId: UUID): ResponseEntity<UserProfile> {
+    @GetMapping("/id/{userId}")
+    fun getUserProfileById(@PathVariable userId: UUID): ResponseEntity<UserProfile> {
         val userProfile = userService.getUserProfileById(userId)
+        return ResponseEntity.ok(userProfile)
+    }
+
+    @GetMapping("/email/{email}")
+    fun getUserProfileByEmail(@PathVariable email: String): ResponseEntity<UserProfile>{
+        val userProfile = userService.getUserProfileByEmail(email)
         return ResponseEntity.ok(userProfile)
     }
 }
