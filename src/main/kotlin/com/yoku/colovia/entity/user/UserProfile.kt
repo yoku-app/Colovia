@@ -32,23 +32,21 @@ data class UserProfile(
                 name = "created_at",
                 nullable = false,
                 updatable = false
-        ) var createdAt: LocalDateTime = LocalDateTime.now(),
+        ) var createdAt: Date = Date(),
 
-        @Column(name = "updated_at", nullable = false) var updatedAt: LocalDateTime = LocalDateTime.now(),
+        @Column(name = "updated_at", nullable = false) var updatedAt: Date = Date(),
 
         @Embedded val onboardingCompletion: OnboardingCompletion? = null
 ) {
-
-
         @PrePersist
         fun onPrePersist() {
-                createdAt = LocalDateTime.now()
-                updatedAt = LocalDateTime.now()
+                createdAt = Date()
+                updatedAt = Date()
         }
 
         @PreUpdate
         fun onPreUpdate() {
-                updatedAt = LocalDateTime.now()
+                updatedAt = Date()
         }
 
         @Embeddable
