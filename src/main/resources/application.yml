@@ -10,6 +10,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
   data:
     mongodb:
       uri: ${MONGO_DB_URI}
@@ -17,7 +18,9 @@ spring:
     redis:
       host: ${REDIS_DB_HOST}
       port: ${REDIS_DB_PORT}
-
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
 server:
   port: 8082
   origins:

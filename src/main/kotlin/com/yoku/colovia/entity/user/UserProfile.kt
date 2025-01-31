@@ -1,7 +1,7 @@
 package com.yoku.colovia.entity.user
 
 import jakarta.persistence.*
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import java.util.*
 
 @Entity
@@ -18,7 +18,7 @@ data class UserProfile(
 
         @Column(name = "phone") val phone: String? = null,
 
-        @Column(name = "dob") val dob: LocalDateTime?,
+        @Column(name = "dob") val dob: ZonedDateTime?,
 
         @Enumerated(EnumType.STRING) @Column(name = "main_focus") val focus: Focus?,
 
@@ -32,30 +32,30 @@ data class UserProfile(
                 name = "created_at",
                 nullable = false,
                 updatable = false
-        ) var createdAt: Date = Date(),
+        ) var createdAt: ZonedDateTime = ZonedDateTime.now(),
 
-        @Column(name = "updated_at", nullable = false) var updatedAt: Date = Date(),
+        @Column(name = "updated_at", nullable = false) var updatedAt: ZonedDateTime = ZonedDateTime.now(),
 
         @Embedded val onboardingCompletion: OnboardingCompletion? = null
 ) {
         @PrePersist
         fun onPrePersist() {
-                createdAt = Date()
-                updatedAt = Date()
+                createdAt = ZonedDateTime.now()
+                updatedAt = ZonedDateTime.now()
         }
 
         @PreUpdate
         fun onPreUpdate() {
-                updatedAt = Date()
+                updatedAt = ZonedDateTime.now()
         }
 
         @Embeddable
         data class OnboardingCompletion(
-        @Column(name = "respondent_onboarding_completion") val respondent: Date? = null,
+        @Column(name = "respondent_onboarding_completion") val respondent: ZonedDateTime? = null,
 
-        @Column(name = "creator_onboarding_completion") val creator: Date? = null,
+        @Column(name = "creator_onboarding_completion") val creator: ZonedDateTime? = null,
 
-        @Column(name = "core_onboarding_completion") val core: Date? = null
+        @Column(name = "core_onboarding_completion") val core: ZonedDateTime? = null
         )
 
         enum class Focus {
