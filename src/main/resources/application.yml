@@ -25,6 +25,7 @@ server:
   port: 8082
   origins:
     - ${ORIGIN_CLIENT_WEB_URL}
+    - ${GUILDMASTER_SERVICE_API_URL}
 logging:
   level:
     root: INFO
