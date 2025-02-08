@@ -1,5 +1,7 @@
 package com.yoku.colovia.entity.user
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.yoku.colovia.entity.dto.UserDTO
 import com.yoku.colovia.entity.dto.UserPartialDTO
 import jakarta.persistence.*
@@ -15,6 +17,7 @@ import java.util.*
                 Index(name = "idx_profiles_name", columnList = "display_name")
         ]
 )
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 data class UserProfile(
         @Id
         @Column(name = "user_id", nullable = false) val userId: UUID,
@@ -53,6 +56,7 @@ data class UserProfile(
         }
 
         @Embeddable
+        @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
         data class OnboardingCompletion(
         @Column(name = "respondent_onboarding_completion") var respondent: ZonedDateTime? = null,
 

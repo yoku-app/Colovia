@@ -1,9 +1,9 @@
-package com.yoku.guildmaster.exceptions.handler
+package com.yoku.colovia.exceptions.handler
 
-import com.yoku.colovia.exceptions.InvalidArgumentException
+import com.yoku.colovia.exceptions.ArgumentException
+import com.yoku.colovia.exceptions.UnauthorizedException
 import com.yoku.colovia.exceptions.UserNotFoundException
 import com.yoku.guildmaster.entity.response.ErrorResponse
-import com.yoku.guildmaster.exceptions.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -36,9 +36,14 @@ class GlobalExceptionHandler {
         return handleException(ex, HttpStatus.NOT_FOUND, true)
     }
 
-    @ExceptionHandler(InvalidArgumentException::class)
-    fun handleInvalidArgumentException(ex: InvalidArgumentException): ResponseEntity<ErrorResponse> {
+    @ExceptionHandler(ArgumentException::class)
+    fun handleInvalidArgumentException(ex: ArgumentException): ResponseEntity<ErrorResponse> {
         return handleException(ex, HttpStatus.BAD_REQUEST, true)
+    }
+
+    @ExceptionHandler(UnauthorizedException::class)
+    fun handleUnauthorizedException(ex: UnauthorizedException): ResponseEntity<ErrorResponse> {
+        return handleException(ex, HttpStatus.UNAUTHORIZED, true)
     }
 
 }

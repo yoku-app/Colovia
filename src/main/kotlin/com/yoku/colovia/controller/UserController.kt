@@ -3,7 +3,9 @@ package com.yoku.colovia.controller
 import com.yoku.colovia.entity.dto.UserDTO
 import com.yoku.colovia.entity.dto.UserPartialDTO
 import com.yoku.colovia.entity.user.UserProfile
+import com.yoku.colovia.exceptions.UnauthorizedException
 import com.yoku.colovia.service.user.UserService
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.UUID
@@ -22,8 +24,10 @@ class UserController(private val userService: UserService) {
      * Fetches the complete user profile by its Id, including private information
      * this should only be used when fetching the user's own profile
      */
-    @GetMapping("/id/{userId}")
-    fun getUserProfileById(@PathVariable userId: UUID): ResponseEntity<UserDTO>{
+    @GetMapping("/session")
+    fun getUserProfileById(@RequestHeader("X-User-Id") userId: UUID?): ResponseEntity<UserDTO>{
+        if(userId == null)  throw UnauthorizedException("User Id was not provider in request headers")
+
         val userProfile = userService.getUserProfileById(userId)
         return ResponseEntity.ok(userProfile.toDTO())
     }
