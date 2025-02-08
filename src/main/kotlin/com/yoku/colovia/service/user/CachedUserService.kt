@@ -31,14 +31,16 @@ class CachedUserService(private val userRepository: UserRepository, private val 
             this.displayName = user.name
             this.dob = user.dob
             this.email = user.email
-            this.onboardingCompletion = UserProfile.OnboardingCompletion(
-                user.onboardingCompletion?.respondent,
-                user.onboardingCompletion?.creator,
-                user.onboardingCompletion?.core
-            )
             this.avatarUrl = user.avatarUrl
             this.phone = user.phone
             this.focus = user.focus
+            this.onboardingCompletion = user.onboardingCompletion?.let {
+                UserProfile.OnboardingCompletion(
+                    respondent = it.respondent,
+                    creator = it.creator,
+                    core = it.core
+                )
+            }
         }
 
         return userRepository.save(profile)

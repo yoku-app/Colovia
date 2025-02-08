@@ -15,8 +15,8 @@ import java.util.UUID
 class UserController(private val userService: UserService) {
 
     @PutMapping("/")
-    fun updateUserProfile(@RequestBody userProfile: UserProfile): ResponseEntity<UserDTO> {
-        val updatedUserProfile = userService.updateUserProfile(userProfile)
+    fun updateUserProfile(@RequestBody user: UserDTO): ResponseEntity<UserDTO> {
+        val updatedUserProfile = userService.updateUserProfile(user)
         return ResponseEntity.ok(updatedUserProfile.toDTO())
     }
 

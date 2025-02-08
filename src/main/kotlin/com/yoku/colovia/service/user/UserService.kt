@@ -1,5 +1,6 @@
 package com.yoku.colovia.service.user
 
+import com.yoku.colovia.entity.dto.UserDTO
 import com.yoku.colovia.entity.dto.UserPartialDTO
 import com.yoku.colovia.entity.user.UserProfile
 import com.yoku.colovia.exceptions.UserNotFoundException
@@ -39,7 +40,7 @@ class UserService(
     }
 
     @Throws(UserNotFoundException::class)
-    fun updateUserProfile(user: UserProfile): UserProfile {
-        return cachedUserService.updateUserProfile(user.toDTO())
+    fun updateUserProfile(user: UserDTO): UserProfile {
+        return cachedUserService.updateUserProfile(user)
     }
 }
