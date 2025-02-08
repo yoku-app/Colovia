@@ -28,6 +28,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0") // Match your Kotlin version
     // Jackson
     implementation("com.fasterxml.jackson.core:jackson-databind")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
     implementation("org.springframework.boot:spring-boot-starter-logging")
