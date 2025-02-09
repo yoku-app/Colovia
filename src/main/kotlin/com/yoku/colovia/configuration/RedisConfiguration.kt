@@ -31,7 +31,7 @@ class RedisConfiguration(
         val mapper = configureObjectMapper()
 
         val cacheConfig = RedisCacheConfiguration.defaultCacheConfig()
-            .entryTtl(Duration.ofHours(6))
+            .entryTtl(Duration.ofHours(1))
             .prefixCacheNameWith("colovia::")
             .disableCachingNullValues()
             .serializeValuesWith(
