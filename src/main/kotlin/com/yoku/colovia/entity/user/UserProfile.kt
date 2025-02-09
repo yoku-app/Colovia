@@ -1,7 +1,6 @@
 package com.yoku.colovia.entity.user
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.yoku.colovia.entity.dto.UserDTO
 import com.yoku.colovia.entity.dto.UserPartialDTO
 import jakarta.persistence.*

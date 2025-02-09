@@ -51,8 +51,8 @@ class UserController(private val userService: UserService) {
     }
 
     @GetMapping("/email/{email}")
-    fun getUserProfileByEmail(@PathVariable email: String): ResponseEntity<UserDTO>{
+    fun getUserProfileByEmail(@PathVariable email: String): ResponseEntity<UserPartialDTO>{
         val userProfile = userService.getUserProfileByEmail(email)
-        return ResponseEntity.ok(userProfile.toDTO())
+        return ResponseEntity.ok(userProfile.toPartialDTO())
     }
 }
